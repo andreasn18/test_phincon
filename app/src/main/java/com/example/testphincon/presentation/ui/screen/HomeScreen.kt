@@ -1,4 +1,4 @@
-package com.example.testphincon.ui.screen
+package com.example.testphincon.presentation.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.testphincon.PokemonViewModel
+import com.example.testphincon.presentation.ui.viewmodel.PokemonViewModel
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)

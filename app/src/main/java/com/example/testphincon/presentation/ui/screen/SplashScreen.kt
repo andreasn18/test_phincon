@@ -1,4 +1,4 @@
-package com.example.testphincon.ui.screen
+package com.example.testphincon.presentation.ui.screen
 
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable

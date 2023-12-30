@@ -1,4 +1,6 @@
-package com.example.testphincon
+package com.example.testphincon.data.response
+
+import com.example.testphincon.data.model.PokemonDetail
 
 data class PokemonResponse(
     val count: Int = 0,

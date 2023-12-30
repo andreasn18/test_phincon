@@ -1,4 +1,4 @@
-package com.example.testphincon.ui.theme
+package com.example.testphincon.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

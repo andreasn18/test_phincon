@@ -1,10 +1,11 @@
-package com.example.testphincon
+package com.example.testphincon.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class PokemonDetail(
     val name: String = "",
     var nickname: String? = null,
+    var seqFibo: Int = 0,
     val abilities: List<Abilities> = emptyList(),
     val sprites: Sprites = Sprites(),
     val types: List<Types> = listOf(),

@@ -1,5 +1,10 @@
-package com.example.testphincon
+package com.example.testphincon.data.remote
 
+import com.example.testphincon.data.form.RenamePokemonForm
+import com.example.testphincon.data.model.PokemonDetail
+import com.example.testphincon.data.response.CatchPokemonResponse
+import com.example.testphincon.data.response.ReleasePokemonResponse
+import com.example.testphincon.data.response.RenamePokemonResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

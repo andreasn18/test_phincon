@@ -1,4 +1,4 @@
-package com.example.testphincon.ui.screen
+package com.example.testphincon.presentation.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -26,19 +26,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.testphincon.PokemonViewModel
+import com.example.testphincon.presentation.ui.viewmodel.PokemonViewModel
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyPokemonScreen(viewModel: PokemonViewModel) {
+fun MyPokemonScreen(viewModel: PokemonViewModel, navController: NavHostController) {
     val listState = rememberLazyListState()
     val myPokemon by viewModel.myPokemon
     val releasePokemonResult by viewModel.releaseResult
     var openDialog by remember { mutableStateOf(false) }
     var selectedPokemon by remember { mutableStateOf("") }
     var selectedPokemonIdx by remember { mutableStateOf(0) }
+    var seqFibo by remember { mutableStateOf(0) }
     val context = LocalContext.current
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -53,6 +55,7 @@ fun MyPokemonScreen(viewModel: PokemonViewModel) {
                         onClick = {
                             openDialog = true
                             selectedPokemon = pokemon.nickname!!
+                            seqFibo = pokemon.seqFibo
                             selectedPokemonIdx = idx
                         },
                         colors = CardDefaults.cardColors(
@@ -96,7 +99,9 @@ fun MyPokemonScreen(viewModel: PokemonViewModel) {
                     dismissButton = {
                         TextButton(onClick = {
                             openDialog = false
-                            viewModel.renamePokemon(selectedPokemon)
+                            myPokemon[selectedPokemonIdx].seqFibo += 1
+                            viewModel.renamePokemon(selectedPokemon, seqFibo + 1)
+                            navController.popBackStack()
                         }) {
                             Text(text = "Rename")
                         }

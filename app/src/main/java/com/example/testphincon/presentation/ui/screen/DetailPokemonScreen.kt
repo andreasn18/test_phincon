@@ -1,6 +1,5 @@
-package com.example.testphincon.ui.screen
+package com.example.testphincon.presentation.ui.screen
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.testphincon.PokemonViewModel
+import com.example.testphincon.presentation.ui.viewmodel.PokemonViewModel
 import java.util.Locale
 
 @Composable

@@ -1,10 +1,14 @@
-package com.example.testphincon
+package com.example.testphincon.presentation.ui.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testphincon.data.response.CatchPokemonResponse
+import com.example.testphincon.data.model.PokemonDetail
+import com.example.testphincon.data.form.RenamePokemonForm
+import com.example.testphincon.data.remote.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class PokemonViewModel : ViewModel() {
@@ -66,10 +70,10 @@ class PokemonViewModel : ViewModel() {
         myPokemon.value = newList
     }
 
-    fun renamePokemon(name: String) {
+    fun renamePokemon(name: String, num: Int) {
         viewModelScope.launch {
             try {
-                val response = apiService2.renamePokemon(RenamePokemonForm(name))
+                val response = apiService2.renamePokemon(RenamePokemonForm(name, num))
                 val myPokemonList = myPokemon.value.filter { it.nickname == name }
                 myPokemonList.first().nickname = response.newName
             } catch (e: Exception) {

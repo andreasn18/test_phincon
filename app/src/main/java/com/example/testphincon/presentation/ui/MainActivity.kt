@@ -1,4 +1,4 @@
-package com.example.testphincon
+package com.example.testphincon.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,11 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.testphincon.ui.screen.DetailPokemonScreen
-import com.example.testphincon.ui.screen.HomeScreen
-import com.example.testphincon.ui.screen.MyPokemonScreen
-import com.example.testphincon.ui.screen.SplashScreen
-import com.example.testphincon.ui.theme.TestPhinconTheme
+import com.example.testphincon.presentation.ui.screen.DetailPokemonScreen
+import com.example.testphincon.presentation.ui.screen.HomeScreen
+import com.example.testphincon.presentation.ui.screen.MyPokemonScreen
+import com.example.testphincon.presentation.ui.screen.SplashScreen
+import com.example.testphincon.presentation.ui.theme.TestPhinconTheme
+import com.example.testphincon.presentation.ui.viewmodel.PokemonViewModel
 
 class MainActivity : ComponentActivity() {
     private val pokemonVM: PokemonViewModel by viewModels()
@@ -53,7 +54,7 @@ class MainActivity : ComponentActivity() {
                 )
             }
             composable("myPokemon") {
-                MyPokemonScreen(viewModel = pokemonVM)
+                MyPokemonScreen(viewModel = pokemonVM, navController)
             }
         }
     }
