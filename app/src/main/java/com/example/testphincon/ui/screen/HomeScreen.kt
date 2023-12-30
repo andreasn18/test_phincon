@@ -1,8 +1,5 @@
 package com.example.testphincon.ui.screen
 
-import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,35 +20,37 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.testphincon.PokemonViewModel
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: PokemonViewModel) {
+fun HomeScreen(viewModel: PokemonViewModel, navController: NavHostController) {
+    val listState = rememberLazyListState()
     val pokemons by viewModel.pokemons
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigate("myPokemon") }) {
                 Icon(imageVector = Icons.Filled.Favorite, contentDescription = "My Pokemon")
             }
         }
         if (pokemons.isEmpty()) {
             Text(text = "Loading.....")
         } else {
-            LazyColumn(Modifier.padding(16.dp), state = rememberLazyListState()) {
-                items(pokemons) { pokemon ->
-//                Log.d("checkdata", pokemon.name)
+            LazyColumn(Modifier.padding(16.dp), state = listState) {
+                items(pokemons, key = { pokemon ->
+                    pokemon.name
+                }) { pokemon ->
                     Card(
-                        onClick = { Log.d("checkdata", "${pokemon.name} clicked")},
+                        onClick = { navController.navigate("detail/${pokemon.name}") },
                         colors = CardDefaults.cardColors(
                             containerColor = when (pokemon.types[0].type.name) {
                                 "grass" -> Color(0xFF64e880)
@@ -82,9 +81,5 @@ fun HomeScreen(viewModel: PokemonViewModel) {
                 }
             }
         }
-    }
-    DisposableEffect(key1 = Unit) {
-        viewModel.getPokemonList()
-        onDispose { }
     }
 }
